@@ -8,17 +8,12 @@ import java.util.LinkedList;
 /**
  * Created by Admin on 30.06.2017.
  */
-public class Weapon /*extends Item*/ implements java.io.Serializable, java.lang.Comparable<Weapon>{
-    String name;
+public class Weapon extends Item implements java.io.Serializable, java.lang.Comparable<Weapon>{
+
     private WeaponType weaponType;
     private String weaponCharacteristics;
     private Hands hands;
-    private byte quality;
-    private Material material;
-    private int price;
-    private float rarity;
-    private LinkedList<ItemAbility> abilities;
-    private String lore;
+
 
 
     public Weapon(
@@ -30,19 +25,14 @@ public class Weapon /*extends Item*/ implements java.io.Serializable, java.lang.
             Material material,
             int price,
             float rarity,
-            LinkedList<ItemAbility> abilities, // !!!!! there should be list, not array. Need the push function
-            String lore
+            LinkedList<ItemAbility> abilities,
+            String description
     ) {
-        this.name = name;
+        super(name, quality, material, price, rarity, abilities, description);
+
         this.weaponType = weaponType;
         this.hands = hands;
         this.weaponCharacteristics = weaponCharacteristics;
-        this.quality = quality;
-        this.material = material;
-        this.price = price;
-        this.rarity = rarity;
-        this.abilities = abilities;
-        this.lore = lore;
     }
 
     public float getTotalRarity() {
@@ -57,9 +47,6 @@ public class Weapon /*extends Item*/ implements java.io.Serializable, java.lang.
         return rarity;
     }
 
-    public void setQuality(byte quality) {
-        this.quality = quality;
-    }
 
     public LinkedList<ItemAbility> getAbilities() {
         return abilities;
@@ -81,10 +68,6 @@ public class Weapon /*extends Item*/ implements java.io.Serializable, java.lang.
         return rarity;
     }
 
-    public void setRarity(float rarity) {
-        this.rarity = rarity;
-    }
-
     public Material getMaterial() {
         return material;
     }
@@ -97,7 +80,7 @@ public class Weapon /*extends Item*/ implements java.io.Serializable, java.lang.
                 "weaponCharacteristics: " + weaponCharacteristics + ",\n" +
                 "hands=" + hands + ", quality=" + quality + ", material=" + material + ", price=" + price + ", rarity=" + rarity + ",\n" +
                 "abilities=" + abilities.toString() + "\n" +
-                ", lore='" + lore + '\'' +
+                ", description='" + description + '\'' +
                 '}' + "\n";
     }
 

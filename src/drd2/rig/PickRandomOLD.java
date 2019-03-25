@@ -8,6 +8,7 @@ import java.lang.ArrayIndexOutOfBoundsException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+import static drd2.rig.ResourceTypes.BODY;
 import static drd2.rig.ResourceTypes.SOUL;
 
 /**
@@ -199,7 +200,7 @@ public class PickRandomOLD {
 
         float totalRarity = (float)(bonusLevel * currentAbilityRarity); // total rarity
         int totalPrice = (int)(bonusLevel * abilityPrice); // total price
-        return new ItemAbility(abilityType, circumstances, bonusLevel, totalPrice, totalRarity);
+        return new ItemAbility(abilityType, circumstances, bonusLevel, totalPrice, totalRarity, BODY);
     }
 
     public static ItemAbility ActivatedAbility() {

@@ -1,4 +1,4 @@
-name,hands,cost,rarity,region,type,bonus,lore
+name,hands,cost,rarity,region,type,bonus,description
 katana,1,111,3,,curved_sword,Proti této zbrani nelze uplatnit výhody nekovové zbroje.,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
 bouruční katana,2,189,4,,curved_sword,Proti této zbrani nelze uplatnit výhody nekovové zbroje.,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
 obouruční falx,2,32,7,,curved_sword,Držitel má +1 při útoku na protivníka bránícího se zbraní nebo štítem.,"Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Traduje se že tato zbraň dokáže rozetnout protivníkův štít vejpůl."

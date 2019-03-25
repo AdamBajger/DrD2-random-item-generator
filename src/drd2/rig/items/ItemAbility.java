@@ -17,12 +17,12 @@ public class ItemAbility {
     public static int MIN_RARITY_VALUE = 1;
     private final ResourceTypes resourceType;
 
-    protected AbilityType abilityType;
-    protected byte level = 0; // this represents the power of the ability
-    protected int price = 0; // how much this ability adds to the Weapon cost
-    protected String circumstances = ""; // When the ability applies, under which circumstances, how much it costs
-    protected String lore = ""; // some special abilities has its own lore and story
-    protected float rarity = 0; // total rarity of this ability
+    private AbilityType abilityType;
+    private byte level = 0; // this represents the power of the ability
+    private int price = 0; // how much this ability adds to the Weapon cost
+    private String circumstances = ""; // When the ability applies, under which circumstances, how much it costs
+    private String lore = ""; // some special abilities has its own lore and story
+    private float rarity = 0; // total rarity of this ability
 
 
 
@@ -36,7 +36,7 @@ public class ItemAbility {
      *
      */
 
-    ItemAbility(AbilityType abilityType, String circumstances, byte level, int price, float rarity, ResourceTypes resourceType) {
+    public ItemAbility(AbilityType abilityType, String circumstances, byte level, int price, float rarity, ResourceTypes resourceType) {
         this.abilityType = abilityType;
         this.circumstances = circumstances;
         this.level = level;

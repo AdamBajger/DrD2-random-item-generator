@@ -158,7 +158,7 @@ public class Merchant implements java.io.Serializable {
         }
     }
 
-    Merchant() {
+    public Merchant() {
         // Default materials used by blacksmiths
         Material[] m = new Material[]{Material.BRONZE,
                 Material.STEEL,
