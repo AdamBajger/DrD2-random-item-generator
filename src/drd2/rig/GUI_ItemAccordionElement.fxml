@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane fx:controller="drd2.rig.GUIItemController" animated="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" text="Item01" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <FlowPane fx:id="itemPane" maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="300.0" rowValignment="TOP">
+            <Label text="Cena: " />
+         <Label fx:id="itemCost" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="54.0" text="77">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="currency" prefHeight="17.0" prefWidth="44.0" text="g">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label text="Quality:" />
+         <Label fx:id="quality" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="21.0" text="1">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+        </FlowPane>
+    </content>
+</TitledPane>

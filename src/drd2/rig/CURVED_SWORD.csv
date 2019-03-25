@@ -1,0 +1,8 @@
+﻿počet řádků;6
+zbraň;ruce;cena;rarita;kraj původu;typ;výhody;příběh
+katana;1;89;7;;CURVED_SWORD;Proti této zbrani nelze uplatnit výhody lehké zbroje.;Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
+obouruční falx;2;16;6.3;;CURVED_SWORD;Pokud je držitel válečník (požadavek na povolání) protivník nemůže vyžít obranu zdarma z nemagické výzbroje. Zdarma mocně.;Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Traduje se že tato zbraň dokáže rozetnout protivníkův štít vejpůl.
+falx;1;10;6;;CURVED_SWORD;Nemagická obrana proti této zbrani má náročnost 1.;Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Svým tvarem umožňuje obejít protivníkův kryt.
+krátká šavle;1;18;3.3;;CURVED_SWORD;Zdarma lstivě.;
+scimitar;1;54;3;;CURVED_SWORD;Zdarma lstivě a přesně.;Delší tenký zahnutý meč orientálního původu. Působí hlubší řezná zranění než obyčejné meče. Díky své zahnuté čepeli se neobyčejně snadno zařezává do masa.
+šavle;1;28;2;;CURVED_SWORD;Zdarma lstivě.;Zahnutý meč působící hlubší řezná zranění, než obyčejné meče. Poskytuje zdarma lstivě.
