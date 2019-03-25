@@ -2,6 +2,12 @@ package drd2.rig;
 
 
 
+import drd2.rig.generators.RandomGenerator;
+import drd2.rig.items.AbilityType;
+import drd2.rig.items.ItemAbility;
+import drd2.rig.items.Weapon;
+import drd2.rig.items.WeaponType;
+
 import java.io.*;
 import java.lang.IllegalArgumentException;
 import java.util.ArrayList;

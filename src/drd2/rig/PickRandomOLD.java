@@ -1,5 +1,8 @@
 package drd2.rig;
 
+import drd2.rig.generators.RandomGenerator;
+import drd2.rig.items.*;
+
 import java.io.*;
 import java.lang.ArrayIndexOutOfBoundsException;
 import java.nio.charset.StandardCharsets;
