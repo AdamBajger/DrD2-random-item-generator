@@ -20,10 +20,9 @@ public class CSVItemParser {
      * It will look on the column containing rarity and leave other values intact??
      * TODO: think through the concept of parsing items/weapons
      * @param csvFilePath path to the CSV parsed
-     * @return
-     * @throws FileNotFoundException
+     * @return array of items
      */
-    public static ArrayList<Item> parseItemsFromCSV(String csvFilePath) throws FileNotFoundException {
+    public static ArrayList<Item> parseItemsFromCSV(String csvFilePath) {
         BufferedReader br = null;
         String line = null;
         try {
@@ -31,6 +30,7 @@ public class CSVItemParser {
             line = br.readLine(); // load the headers of the table
             // find out which column contains rarity
             byte rarityColIndex = 0;
+            // TODO: implement switch to parse headers
             for (String s : line.split(separator, -1)) {
                 if (s.equals("rarity")) {
                     break;
