@@ -1,18 +1,15 @@
-package drd2.rig.csv;
+package drd2.rig.text.csv;
 
 import drd2.rig.items.Item;
-import drd2.rig.items.ItemType;
-import drd2.rig.items.WeaponType;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class CSVItemParser {
-    static String separator = ",";
+    public static final String SEPARATOR = ",";
+
+    public static final String LABEL_RARITY = "rarity";
 
 
     /**
@@ -29,17 +26,15 @@ public class CSVItemParser {
             br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFilePath), StandardCharsets.UTF_8));
             line = br.readLine(); // load the headers of the table
             // find out which column contains rarity
-            byte rarityColIndex = 0;
+
             // TODO: implement switch to parse headers
-            for (String s : line.split(separator, -1)) {
-                if (s.equals("rarity")) {
-                    break;
-                } else rarityColIndex++;
-            }
+            String[] splitRow = line.split(SEPARATOR, -1);
+            byte rarityI = getIndexOfStrInArr(splitRow, LABEL_RARITY); // TODO: add constants strings
+
 
             // this will read lines one by one until end of file
             while ((line = br.readLine()) != null) {
-                String[] itemInformation = line.split(separator, -1);
+                String[] itemInformation = line.split(SEPARATOR, -1);
                 // TODO: dodělat generování objektů
             }
         } catch (IOException e) {
@@ -55,5 +50,20 @@ public class CSVItemParser {
 
         }
         return null;
+    }
+
+    private static byte getIndexOfStrInArr(String[] haystack, String needle) {
+        byte rarityColIndex = 0;
+        for (String s : haystack) {
+            // if we reach end before finding the string
+            if (s.length() <= rarityColIndex) {
+                System.err.println("Missing Rarity column.");
+                return -1;
+            }
+            if (s.equals("rarity")) {
+                break;
+            } else rarityColIndex++;
+        }
+        return rarityColIndex;
     }
 }

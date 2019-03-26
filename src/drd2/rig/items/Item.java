@@ -1,30 +1,30 @@
 package drd2.rig.items;
 
+import drd2.rig.CzechAlphabetEnum;
 import drd2.rig.Material;
 
 import java.util.LinkedList;
 
-public class Item {
-    public  String name;
-    byte quality;
-    Material material;
-    int price;
-    float rarity;
-    LinkedList<ItemAbility> abilities;
-    String description;
+public abstract class Item implements java.io.Serializable, java.lang.Comparable<Item> {
+    private final String name;
+    private final byte quality;
+    private final Material material;
+    private final int price;
+    private final LinkedList<ItemAbility> abilities;
+    private final String description;
+
+    public abstract int getOrdinal();
 
     public Item(String name,
                 byte quality,
                 Material material,
                 int price,
-                float rarity,
                 LinkedList<ItemAbility> abilities,
                 String description) {
         this.name = name;
         this.quality = quality;
         this.material = material;
         this.price = price;
-        this.rarity = rarity;
         this.abilities = abilities;
         this.description = description;
     }
@@ -45,9 +45,7 @@ public class Item {
         return price;
     }
 
-    public float getRarity() {
-        return rarity;
-    }
+
 
     public LinkedList<ItemAbility> getAbilities() {
         return abilities;
@@ -56,5 +54,24 @@ public class Item {
     public String getDescription() {
         return description;
     }
+
+    public abstract int compareToItemOfSameType(Item item);
+
+
+    @Override
+    public int compareTo(Item item) {
+        // compare based on type, if it is different
+        if(item.getClass() == this.getClass()) {
+            int result = this.compareToItemOfSameType(item);
+            if ( result == 0 ) {
+                // If the weapon types are the same, continue in name comparison
+                return this.name.compareTo(item.getName());
+            }
+            return result;
+        }
+        return this.getOrdinal() - item.getOrdinal();
+    }
+
+
 
 }

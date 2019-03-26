@@ -8,23 +8,16 @@ import java.util.LinkedList;
 /**
  * Created by Admin on 30.06.2017.
  */
-public class Weapon extends Item implements java.io.Serializable, java.lang.Comparable<Weapon>{
+public class Weapon extends Item implements java.io.Serializable {
 
     private WeaponType weaponType;
-    private String weaponCharacteristics;
     private Hands hands;
 
 
 
-    public Weapon(
-            String name,
-            WeaponType weaponType,
-            String weaponCharacteristics,
-            Hands hands,
-            byte quality,
-            Material material,
-            int price,
-            float rarity,
+
+    public Weapon(String name, WeaponType weaponType, Hands hands,
+            byte quality, Material material, int price, float rarity,
             LinkedList<ItemAbility> abilities,
             String description
     ) {
@@ -32,89 +25,34 @@ public class Weapon extends Item implements java.io.Serializable, java.lang.Comp
 
         this.weaponType = weaponType;
         this.hands = hands;
-        this.weaponCharacteristics = weaponCharacteristics;
-    }
-
-    public float getTotalRarity() {
-        float totalRarity = rarity*quality*material.rarityMultiplier;
-        for (ItemAbility o: abilities) {
-            totalRarity += o.getRarity();
-        }
-        return totalRarity;
-    }
-
-    public float getBaseRarity() {
-        return rarity;
     }
 
 
-    public LinkedList<ItemAbility> getAbilities() {
-        return abilities;
+    public WeaponType getWeaponType() {
+        return weaponType;
     }
 
-    public void addAbility(ItemAbility ability) {
-        this.abilities.add(ability);
-    }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public float getRarity() {
-        return rarity;
-    }
-
-    public Material getMaterial() {
-        return material;
+    public Hands getHands() {
+        return hands;
     }
 
     @Override
-    public String toString() {
-        return "Weapon{" +
-                "name: " + name +
-                ", weaponType=" + weaponType + ",\n" +
-                "weaponCharacteristics: " + weaponCharacteristics + ",\n" +
-                "hands=" + hands + ", quality=" + quality + ", material=" + material + ", price=" + price + ", rarity=" + rarity + ",\n" +
-                "abilities=" + abilities.toString() + "\n" +
-                ", description='" + description + '\'' +
-                '}' + "\n";
-    }
-
-    /**
-     * This method returns value based on input nubers. Zero means that those numbers are the same, positive number means that the second number is lower, negative value means the opposite.
-     * @param first some word represented by array of characters
-     * @param second another word represented by array of characters
-     * @return Negative, positive value or zero.
-     */
-
-    private byte compareTwoNames(char[] first, char[] second, byte index) {
-        try {
-            if ((CzechAlphabetEnum.valueOf(String.valueOf(first[index])).ordinal() - CzechAlphabetEnum.valueOf(String.valueOf(second[index])).ordinal()) == 0) {
-                return compareTwoNames(first, second, (byte)(index + 1));
-            } else {
-                return (byte)(CzechAlphabetEnum.valueOf(String.valueOf(first[index])).ordinal() - CzechAlphabetEnum.valueOf(String.valueOf(second[index])).ordinal());
-            }
-        } catch(ArrayIndexOutOfBoundsException e) {
-            return (first.length < second.length ? (byte)127 : (byte)(-128));
-        }
+    public int getOrdinal() {
+        return 2;
     }
 
     @Override
-    public int compareTo(Weapon input) {
+    public int compareToItemOfSameType(Item item) {
         // compare based on type, if it is different
-        if(input.weaponType != this.weaponType) {
-            return this.weaponType.ordinal() - input.weaponType.ordinal();
-        }
-        // If the weapon types are the same, continue in name comparison
-        // set up two character arrays from compared names
-        char[] thisName = this.name.replaceAll("\\s","").toCharArray();
-        char[] inputName = input.name.replaceAll("\\s","").toCharArray();
+        if(item instanceof Weapon) {
+            if(((Weapon)item).weaponType != this.weaponType) {
+                return this.weaponType.ordinal() - ((Weapon)item).weaponType.ordinal();
+            }
+            return this.hands.ordinal() - ((Weapon)item).getHands().ordinal();
 
-        // Return the final result of comparison obtained from the compareTwoNames() method
-        return compareTwoNames(thisName, inputName, (byte)0);
+        }
+
+        return 0;
     }
 }

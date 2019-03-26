@@ -82,7 +82,7 @@ public class PickRandomOLD {
         BufferedReader br = null;
         String line; //= "";
         String[] content; // Array containing particular values stored in single CSV line
-        String cvsSplitBy = ";"; // Using semicolon as a "comma" separator while parsing CSV file
+        String cvsSplitBy = ";"; // Using semicolon as a "comma" SEPARATOR while parsing CSV file
         String circumstances = "";
         Double currentAbilityRarity = 0.0; // this variable holds ability rarity of current line
         double abilityPrice = 0.0; // this holds the price of current ability
@@ -244,7 +244,7 @@ public class PickRandomOLD {
         BufferedReader br = null;
         String line; //= "";
         String[] content; // Array containing particular values stored in single CSV line
-        String csvSplitBy = ";"; // Using semicolon as a "comma" separator while parsing CSV file
+        String csvSplitBy = ";"; // Using semicolon as a "comma" SEPARATOR while parsing CSV file
         String weaponName = "";
         Hands hands = Hands.NO_HANDS;
         float currentWeaponRarity = 0; // this variable holds ability rarity of current line
