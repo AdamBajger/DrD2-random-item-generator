@@ -9,7 +9,8 @@ public abstract class Item implements java.io.Serializable, java.lang.Comparable
     private final String name;
     private final byte quality;
     private final Material material;
-    private final int price;
+    @Deprecated
+    private final int price; // TODO: remove price and replace it with method that claculates price based on stuff
     private final LinkedList<ItemAbility> abilities;
     private final String description;
 
