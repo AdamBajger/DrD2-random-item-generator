@@ -16,15 +16,4 @@ public enum Material implements java.io.Serializable {
         BONE.priceMultiplier = (float)1.1;
         OBSIDIAN.priceMultiplier = (float)1.4;
     }
-
-    public float rarityMultiplier;
-
-    static {
-        IRON.rarityMultiplier = (float)1;
-        BRONZE.rarityMultiplier = (float)0.8;
-        STEEL.rarityMultiplier = (float)1.1;
-        WOOD.rarityMultiplier = (float)0.5;
-        BONE.rarityMultiplier = (float)1.5;
-        OBSIDIAN.rarityMultiplier = (float)2;
-    }
 }

@@ -17,11 +17,11 @@ public class Weapon extends Item implements java.io.Serializable {
 
 
     public Weapon(String name, WeaponType weaponType, Hands hands,
-            byte quality, Material material, int price, float rarity,
+            byte quality, Material material, int price,
             LinkedList<ItemAbility> abilities,
             String description
     ) {
-        super(name, quality, material, price, rarity, abilities, description);
+        super(name, quality, material, price, abilities, description);
 
         this.weaponType = weaponType;
         this.hands = hands;
