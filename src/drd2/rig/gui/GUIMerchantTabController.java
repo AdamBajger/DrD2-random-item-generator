@@ -1,6 +1,7 @@
 package drd2.rig.gui;
 
 import drd2.rig.Merchant;
+import drd2.rig.items.Item;
 import drd2.rig.items.Weapon;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,11 +42,11 @@ public class GUIMerchantTabController implements Initializable{
         m.createSortiment("A1");
 
         // visualize those items in GUI, add the to the accordion
-        for (Weapon weapon : this.m.getCurrentGoods()) {
+        for (Item item : this.m.getCurrentGoods()) {
             TitledPane newItemElement = FXMLLoader.load(getClass().getResource("GUI_ItemAccordionElement.fxml"));
 
             // you need to add an element to that accordion for each item!
-            newItemElement.setText(weapon.name);
+            newItemElement.setText(item.getName());
 
 
             sortimentViewSpace.getPanes().add(newItemElement);

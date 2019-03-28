@@ -245,28 +245,6 @@ public class Merchant implements java.io.Serializable {
                     materialsUsed[RandomGenerator.RANDOM.nextInt(materialsUsed.length)]
             );
 
-            // edit the rarity and price based on material used, no one cares that it will fuck up the system
-            sortiment[h].setPrice((int)(sortiment[h].getPrice() * sortiment[h].getMaterial().priceMultiplier));
-
-            // after item is generated, its rarity is decremented from leftover rarity
-            leftoverBaseRarity -= sortiment[h].getBaseRarity();
-
-            // If the merchant sells magic items, give them some magic (also apply ability rarity changes
-            if(sellingMagic) {
-                // Takes random ability and adds it to the ItemAbility[] array of currently generated weapon
-                ItemAbility randomAbility = PickRandomOLD.GeneralAbility(leftoverAbilityRarity, region);
-                sortiment[h].addAbility(randomAbility);
-                leftoverAbilityRarity -= randomAbility.getRarity();
-
-                // It will add multiple abilities sometimes (and if there is enough unused rarity)
-                while(leftoverAbilityRarity >= ItemAbility.MIN_RARITY_VALUE && RandomGenerator.RANDOM.nextBoolean()) {
-                    if(!sortiment[h].getAbilities().contains(randomAbility = PickRandomOLD.GeneralAbility(leftoverAbilityRarity, region))) {
-                        sortiment[h].addAbility(randomAbility);
-                        leftoverAbilityRarity -= randomAbility.getRarity();
-                    }
-                }
-            }
-
 
             h++;
             //}
@@ -355,7 +333,7 @@ public class Merchant implements java.io.Serializable {
     public String sortimentToSimplifiedString() {
         String plainTextSortiment = name + "{\n";
         for (Weapon w : currentGoods) {
-            plainTextSortiment = plainTextSortiment + w.name + ",\n";
+            plainTextSortiment = plainTextSortiment + w.getName() + ",\n";
         }
         plainTextSortiment = plainTextSortiment + "}";
         return plainTextSortiment;
