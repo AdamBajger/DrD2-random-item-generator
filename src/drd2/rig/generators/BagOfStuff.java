@@ -41,7 +41,7 @@ public class BagOfStuff<T> {
         }
     }
 
-    public T grabItem() {
+    public T grabStuff() {
         double prob = R.nextDouble();
         for (int i = 0; i < this.probabilities.length; i++) {
             if (probabilities[i] > prob) {
