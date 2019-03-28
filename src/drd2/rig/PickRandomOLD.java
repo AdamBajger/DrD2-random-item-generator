@@ -200,7 +200,7 @@ public class PickRandomOLD {
 
         float totalRarity = (float)(bonusLevel * currentAbilityRarity); // total rarity
         int totalPrice = (int)(bonusLevel * abilityPrice); // total price
-        return new ItemAbility(abilityType, circumstances, bonusLevel, totalPrice, totalRarity, BODY);
+        return new ItemAbility(abilityType, circumstances, bonusLevel, totalPrice, BODY, "");
     }
 
     public static ItemAbility ActivatedAbility() {
@@ -210,9 +210,8 @@ public class PickRandomOLD {
                 "Toto je testovací schopnost. Stojí tě dvě duše a nic se nestane.",
                 (byte)(1),
                 24,
-                (float)5.7,
-                SOUL
-        );
+                SOUL,
+                "");
     }
 
     /**

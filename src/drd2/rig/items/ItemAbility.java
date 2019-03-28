@@ -18,12 +18,10 @@ public class ItemAbility {
     private final ResourceTypes resourceType;
 
     private AbilityType abilityType;
-    private byte level = 0; // this represents the power of the ability
-    private int price = 0; // how much this ability adds to the Weapon cost
-    private String circumstances = ""; // When the ability applies, under which circumstances, how much it costs
-    private String lore = ""; // some special abilities has its own lore and story
-    private float rarity = 0; // total rarity of this ability
-
+    private byte level; // this represents the power of the ability
+    private int price; // how much this ability adds to the Weapon cost
+    private String circumstances; // When the ability applies, under which circumstances, how much it costs
+    private String lore; // some special abilities has its own lore and story
 
 
     /**
@@ -32,44 +30,43 @@ public class ItemAbility {
      * @param circumstances Specifies when the ability/bonus applies and what it costs eventually or what do you need to activate the ability.
      * @param level Holds the level of ability (how much you add to your roll, what id the discount for exhaustion, etc.)
      * @param price Price of this ability. It is added to the total item cost.
-     * @param rarity How rare is this ability, how powerful it is. The higher value, the more rare.
+     * @param lore Tells the story of the ability
      *
      */
 
-    public ItemAbility(AbilityType abilityType, String circumstances, byte level, int price, float rarity, ResourceTypes resourceType) {
+    public ItemAbility(AbilityType abilityType, String circumstances, byte level, int price, ResourceTypes resourceType, String lore) {
         this.abilityType = abilityType;
         this.circumstances = circumstances;
         this.level = level;
         this.price = price;
-        this.rarity = rarity;
         this.resourceType = resourceType;
-
-
-
-
-
+        this.lore = lore;
     }
 
     public String getDescription() {
-        if(this.level == 0) {
-            return "Neposkytuje žádný bonus";
-        }
         String abilityDescription = "";
+
         switch(this.abilityType) {
             case EXHAUSTION:
-                abilityDescription = abilityDescription + "poskytuje slevu " + this.level + " na vyčerpání při " + this.circumstances;
+                if (level != 0) {
+                    abilityDescription = "Poskytuje slevu " + this.level + " na vyčerpání " + this.circumstances + ". ";
+                }
                 break;
             case BONUS:
-                abilityDescription = abilityDescription + "poskytuje bonus +" + this.level + " k hodu kostkou při " + this.circumstances;
+                if (level != 0) {
+                    abilityDescription = "Poskytuje bonus +" + this.level + " k hodu kostkou " + this.circumstances
+                            + ". ";
+                }
 
                 break;
             case ACTIVATE:
-                abilityDescription = abilityDescription + "umožňuje " + this.circumstances + ". Aktivace stojí " + this.level;
-                abilityDescription += TXTGen.activationCosts(level, resourceType);
+                abilityDescription = "Umožňuje " + this.circumstances + ", aktivace stojí " + this.level + " "
+                        + TXTGen.activationCosts(level, resourceType) + ". ";
 
                 break;
             case SPECIAL:
-                abilityDescription = abilityDescription + "Vlastnost: " + this.circumstances + " Úroveň: " + this.level + " Rarita: " + this.rarity;
+                abilityDescription = abilityDescription + "Vlastnost: " + this.circumstances + " - Úroveň: "
+                        + this.level + ". ";
                 break;
         }
         return abilityDescription;
@@ -84,7 +81,7 @@ public class ItemAbility {
     }
 
     public int getPrice() {
-        return price;
+        return price*level;
     }
 
     public String getCircumstances() {
@@ -95,7 +92,10 @@ public class ItemAbility {
         return lore;
     }
 
+    @Deprecated
     public float getRarity() {
+        // total rarity of this ability
+        float rarity = 0;
         return rarity;
     }
 }
