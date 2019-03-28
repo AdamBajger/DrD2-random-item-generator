@@ -365,12 +365,10 @@ public class PickRandomOLD {
             return new Weapon(
                     weaponName,
                     weaponType,
-                    bonuses,
                     hands,
                     weaponQuality,
                     weaponMaterial,
                     totalPrice,
-                    totalRarity,
                     new LinkedList<ItemAbility>(),
                     lore
             );
