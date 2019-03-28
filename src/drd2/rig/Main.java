@@ -1,15 +1,12 @@
 package drd2.rig;
 
-import drd2.rig.text.csv.CSVItemParser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedList;
 

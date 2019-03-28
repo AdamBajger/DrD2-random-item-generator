@@ -6,10 +6,18 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class CSVItemParser {
+public class CSVParser {
     public static final String SEPARATOR = ",";
 
+    public static final String LABEL_NAME = "name";
+    public static final String LABEL_ITEM_TYPE = "itemType";
+    public static final String LABEL_TYPE = "type";
+    public static final String LABEL_HANDS = "hands";
+    public static final String LABEL_COST = "cost";
     public static final String LABEL_RARITY = "rarity";
+    public static final String LABEL_REGION = "region";
+    public static final String LABEL_BONUS = "bonus";
+    public static final String LABEL_DESCRIPTION = "description";
 
 
     /**
@@ -27,9 +35,6 @@ public class CSVItemParser {
             line = br.readLine(); // load the headers of the table
             // find out which column contains rarity
 
-            // TODO: implement switch to parse headers
-            String[] splitRow = line.split(SEPARATOR, -1);
-            byte rarityI = getIndexOfStrInArr(splitRow, LABEL_RARITY); // TODO: add constants strings
 
 
             // this will read lines one by one until end of file
@@ -47,23 +52,25 @@ public class CSVItemParser {
                     e.printStackTrace();
                 }
             }
-
         }
         return null;
     }
 
-    private static byte getIndexOfStrInArr(String[] haystack, String needle) {
-        byte rarityColIndex = 0;
-        for (String s : haystack) {
-            // if we reach end before finding the string
-            if (s.length() <= rarityColIndex) {
-                System.err.println("Missing Rarity column.");
-                return -1;
-            }
-            if (s.equals("rarity")) {
-                break;
-            } else rarityColIndex++;
+    public Item parseItemFromLine(String line) {
+        byte iName;
+        byte iItemType;
+        byte iType;
+        byte iHands;
+        byte iCost;
+        byte iRarity;
+        byte iRegion;
+        byte iBonus;
+        byte iDescription;
+
+        String[] splitRow = line.split(SEPARATOR, -1);
+        for (int i = 0; i < splitRow.length; i++) {
+
         }
-        return rarityColIndex;
     }
+
 }

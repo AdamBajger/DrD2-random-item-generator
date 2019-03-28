@@ -27,19 +27,19 @@ public class ItemAbility {
     /**
      * Constructs new ItemAbility object to be inserted to an item.
      * @param abilityType Type of ability being created {@link AbilityType}
-     * @param circumstances Specifies when the ability/bonus applies and what it costs eventually or what do you need to activate the ability.
      * @param level Holds the level of ability (how much you add to your roll, what id the discount for exhaustion, etc.)
      * @param price Price of this ability. It is added to the total item cost.
+     * @param circumstances Specifies when the ability/bonus applies and what it costs eventually or what do you need to activate the ability.
      * @param lore Tells the story of the ability
      *
      */
 
-    public ItemAbility(AbilityType abilityType, String circumstances, byte level, int price, ResourceTypes resourceType, String lore) {
+    public ItemAbility(AbilityType abilityType, byte level, int price, ResourceTypes resourceType, String circumstances, String lore) {
         this.abilityType = abilityType;
-        this.circumstances = circumstances;
         this.level = level;
         this.price = price;
         this.resourceType = resourceType;
+        this.circumstances = circumstances;
         this.lore = lore;
     }
 
