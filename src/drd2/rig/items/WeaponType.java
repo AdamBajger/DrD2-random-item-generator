@@ -9,12 +9,13 @@ import static drd2.rig.Material.*;
  * Created by Admin on 30.06.2017.
  */
 public enum WeaponType implements java.io.Serializable{
-    SWORD, DAGGER, AXE, HAMMER, EASY, RANGED;
+    SWORD, CURVED, DAGGER, AXE, HAMMER, EASY, RANGED;
 
     private Material[] usualMaterials;
 
     static {
         SWORD.usualMaterials = new Material[]{BRONZE, IRON, STEEL};
+        CURVED.usualMaterials = new Material[]{IRON, STEEL};
         DAGGER.usualMaterials = new Material[]{BRONZE, IRON, STEEL, BONE, OBSIDIAN};
         AXE.usualMaterials = new Material[]{BRONZE, IRON, STEEL, BONE};
         HAMMER.usualMaterials = new Material[]{BRONZE, IRON, STEEL, BONE};
@@ -25,5 +26,21 @@ public enum WeaponType implements java.io.Serializable{
 
     public Material[] getUsualMaterials() {
         return usualMaterials;
+    }
+
+    private String text;
+    static {
+        SWORD.text = "sword";
+        CURVED.text = "curved";
+        DAGGER.text = "dagger";
+        AXE.text = "axe";
+        HAMMER.text = "hammer";
+        EASY.text = "easy";
+        RANGED.text = "ranged";
+
+
+
+
+
     }
 }

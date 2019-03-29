@@ -1,10 +1,13 @@
 package drd2.rig.text.csv;
 
+import drd2.rig.generators.BagOfStuff;
 import drd2.rig.items.Item;
+import drd2.rig.items.ItemType;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CSVParser {
     public static final String SEPARATOR = ",";
@@ -27,26 +30,20 @@ public class CSVParser {
      * @param csvFilePath path to the CSV parsed
      * @return array of items
      */
-    public static ArrayList<Item> parseItemsFromCSV(String csvFilePath) {
+    public static BagOfStuff<Item> parseItemsFromCSV(String csvFilePath) {
+        Set<Item> set = new HashSet<>();
         BufferedReader br = null;
         String line = null;
         try {
             br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFilePath), StandardCharsets.UTF_8));
             line = br.readLine(); // load the headers of the table
 
-            byte iName;
-            byte iItemType;
-            byte iType;
-            byte iHands;
-            byte iCost;
-            byte iRarity;
-            byte iRegion;
-            byte iBonus;
-            byte iDescription;
+            byte iName = -1, iItemType = -1, iType = -1, iHands = -1, iCost = -1, iRarity = -1,
+                    iRegion = -1, iBonus = -1, iDescription = -1;
 
-            String[] splitRow = line.split(SEPARATOR, -1);
-            for (byte i = 0; i < splitRow.length; i++) {
-                switch (splitRow[i]) {
+            String[] splitHeader = line.split(SEPARATOR, -1);
+            for (byte i = 0; i < splitHeader.length; i++) {
+                switch (splitHeader[i]) {
                     case LABEL_NAME:
                         iName = i;
                         break;
@@ -77,11 +74,15 @@ public class CSVParser {
                 }
             }
 
-
             // this will read lines one by one until end of file
             while ((line = br.readLine()) != null) {
                 String[] itemInformation = line.split(SEPARATOR, -1);
-                // TODO: dodělat generování objektů
+                if (iType == -1) {
+                    throw new RuntimeException("Error: CSVParser: No item type defined in CSV[" + csvFilePath + "].");
+                }
+                switch(itemInformation[iType]) {
+                    case ItemType.WEAPON.text:
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
