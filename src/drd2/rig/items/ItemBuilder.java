@@ -1,6 +1,7 @@
 package drd2.rig.items;
 
 import drd2.rig.Material;
+import drd2.rig.generators.BagOfStuff;
 
 import java.util.LinkedList;
 
@@ -20,5 +21,12 @@ public class ItemBuilder {
         this.basicPrice = basicPrice;
         this.abilities = abilities;
         this.description = description;
+    }
+
+    public WeaponBuilder toWeaponBuilder(Hands hands, WeaponType wt, BagOfStuff<Material> bom) {
+        return new WeaponBuilder(name, basicPrice, abilities, description, hands, wt, bom);
+    }
+    public WeaponBuilder toWeaponBuilder(Hands hands, WeaponType wt) {
+        return new WeaponBuilder(name, basicPrice, abilities, description, hands, wt);
     }
 }

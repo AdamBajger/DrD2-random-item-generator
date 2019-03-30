@@ -1,6 +1,5 @@
 package drd2.rig.text.csv;
 
-import drd2.rig.Material;
 import drd2.rig.generators.BagOfStuff;
 import drd2.rig.items.*;
 
@@ -8,14 +7,11 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import static drd2.rig.items.ItemType.WEAPON;
-
 public class CSVParser {
     public static final String SEPARATOR = ",";
 
     public static final String LABEL_NAME = "name";
-    public static final String LABEL_ITEM_TYPE = "itemType";
-    public static final String LABEL_TYPE = "type";
+    public static final String LABEL_WEAPON_TYPE = "weaponType";
     public static final String LABEL_HANDS = "hands";
     public static final String LABEL_COST = "cost";
     public static final String LABEL_RARITY = "rarity";
@@ -32,36 +28,41 @@ public class CSVParser {
      * @return array of items
      */
     public static BagOfStuff<WeaponBuilder> parseWeaponsFromCSV(String csvFilePath) {
-        Set<WeaponBuilder> set = new HashSet<>();
+        List<WeaponBuilder> weaponBuilderList = new LinkedList<>();
+        List<Integer> rarityList = new LinkedList<>();
+
         BufferedReader br = null;
         String line = null;
+
         try {
             br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFilePath), StandardCharsets.UTF_8));
             line = br.readLine(); // load the headers of the table
 
             String[] splitHeader = line.split(SEPARATOR, -1);
-            byte iType = findStrInArr(LABEL_TYPE, splitHeader);
+            byte iType = findStrInArr(LABEL_WEAPON_TYPE, splitHeader);
 
             if (iType == -1) {
                 throw new RuntimeException("Error: CSVParser: No item type column defined in CSV[" + csvFilePath + "].");
             }
 
-
-            // this will read lines one by one until end of file
+            // this will read lines one by one until end of file and add Objects to list
             while ((line = br.readLine()) != null) {
                 String[] itemInformation = line.split(SEPARATOR, -1);
-                set.add(new ItemBuilder(
-                        getValByLabel(splitHeader, itemInformation, "name"),
-                        Integer.parseInt(getValByLabel(splitHeader, itemInformation, LABEL_COST)),
-                        new LinkedList<>(Arrays.asList(new ItemAbility[]{new ItemAbility(AbilityType.SPECIAL, (byte)0,0,null, getValByLabel(splitHeader, itemInformation, "bonus"),null)})),
-                        getValByLabel(splitHeader, itemInformation, LABEL_DESCRIPTION)
-                ))
-
-
-                WeaponType.valueOf(getValByLabel(splitHeader, itemInformation, "type")),
-                        Hands.array[Integer.parseInt(getValByLabel(splitHeader, itemInformation, "hands"))],
-                        Byte.parseByte(getValByLabel(splitHeader, itemInformation, "quality")),
+                weaponBuilderList.add(
+                        new ItemBuilder(
+                                getValByLabel(splitHeader, itemInformation, LABEL_NAME),
+                                Integer.parseInt(getValByLabel(splitHeader, itemInformation, LABEL_COST)),
+                                new LinkedList<>(Collections.singletonList(new ItemAbility(AbilityType.SPECIAL, (byte)0,0,null, getValByLabel(splitHeader, itemInformation, LABEL_BONUS),null))),
+                                getValByLabel(splitHeader, itemInformation, LABEL_DESCRIPTION)
+                        ).toWeaponBuilder(
+                                Hands.valueOf(getValByLabel(splitHeader, itemInformation, LABEL_HANDS)),
+                                WeaponType.valueOf(getValByLabel(splitHeader, itemInformation, LABEL_WEAPON_TYPE))
+                        )
+                );
+                rarityList.add(Integer.parseInt(getValByLabel(splitHeader, itemInformation, LABEL_RARITY)));
             }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -73,7 +74,13 @@ public class CSVParser {
                 }
             }
         }
-        return null;
+        int[] rarityArray = new int[rarityList.size()];
+        int iterator = 0;
+        for (Integer i : rarityList) {
+            rarityArray[iterator] = i;
+            ++iterator;
+        }
+        return new BagOfStuff<>((WeaponBuilder[])weaponBuilderList.toArray(), rarityArray);
     }
 
     /**
