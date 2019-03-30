@@ -1,6 +1,9 @@
 package drd2.rig;
 
+import drd2.rig.generators.BagOfStuff;
+import drd2.rig.items.WeaponBuilder;
 import drd2.rig.items.WeaponType;
+import drd2.rig.text.csv.CSVParser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,11 +19,9 @@ public class Main extends Application {
 
         public static void main(String[] args) {
 
-            WeaponType wt1 = WeaponType.valueOf("SWORD");
-            WeaponType wt2 = WeaponType.valueOf("HAMMER");
-            System.out.println("Strings - " + wt1 + " " + wt2);
+            BagOfStuff<WeaponBuilder> bowb = CSVParser.parseWeaponsFromCSV("/resources/csv/WEAPON_CURVED_SWORD.csv");
 
-            //launch(args);
+
         }
 
 

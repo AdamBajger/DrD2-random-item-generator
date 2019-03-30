@@ -55,4 +55,12 @@ public class Weapon extends Item implements java.io.Serializable {
 
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Weapon: {" +
+                "weaponType: " + weaponType +
+                ", hands: " + hands +
+                '}';
+    }
 }

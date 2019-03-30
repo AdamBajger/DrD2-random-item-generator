@@ -71,6 +71,15 @@ public abstract class Item implements java.io.Serializable, java.lang.Comparable
         return this.getOrdinal() - item.getOrdinal();
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Item: {" +
+                "name: '" + name + '\'' +
+                ", quality: " + quality +
+                ", material: " + material +
+                ", basicPrice: " + basicPrice +
+                ", abilities: " + abilities +
+                ", description: '" + description + '\'' +
+                '}';
+    }
 }
