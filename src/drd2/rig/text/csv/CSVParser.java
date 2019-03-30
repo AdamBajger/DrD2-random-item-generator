@@ -1,23 +1,32 @@
 package drd2.rig.text.csv;
 
 import drd2.rig.generators.BagOfStuff;
-import drd2.rig.items.*;
+import drd2.rig.items.AbilityType;
+import drd2.rig.items.Hands;
+import drd2.rig.items.ItemAbility;
+import drd2.rig.items.ItemBuilder;
+import drd2.rig.items.WeaponBuilder;
+import drd2.rig.items.WeaponType;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CSVParser {
-    public static final String SEPARATOR = ",";
+    private static final String SEPARATOR = ",";
 
-    public static final String LABEL_NAME = "name";
-    public static final String LABEL_WEAPON_TYPE = "weaponType";
-    public static final String LABEL_HANDS = "hands";
-    public static final String LABEL_COST = "cost";
-    public static final String LABEL_RARITY = "rarity";
-    public static final String LABEL_REGION = "region";
-    public static final String LABEL_BONUS = "bonus";
-    public static final String LABEL_DESCRIPTION = "description";
+    private static final String LABEL_NAME = "name";
+    private static final String LABEL_WEAPON_TYPE = "weaponType";
+    private static final String LABEL_HANDS = "hands";
+    private static final String LABEL_COST = "cost";
+    private static final String LABEL_RARITY = "rarity";
+    private static final String LABEL_BONUS = "bonus";
+    private static final String LABEL_DESCRIPTION = "description";
 
 
     /**
@@ -32,7 +41,7 @@ public class CSVParser {
         List<Integer> rarityList = new LinkedList<>();
 
         BufferedReader br = null;
-        String line = null;
+        String line;
 
         try {
             br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFilePath), StandardCharsets.UTF_8));
