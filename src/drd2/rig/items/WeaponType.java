@@ -15,13 +15,13 @@ public enum WeaponType implements java.io.Serializable{
     private BagOfStuff<Material> usualMaterials;
 
     static {
-        SWORD.usualMaterials = BagOfStuff(new Material[]{BRONZE, IRON, STEEL};
-        CURVED.usualMaterials = new Material[]{IRON, STEEL};
-        DAGGER.usualMaterials = new Material[]{BRONZE, IRON, STEEL, BONE, OBSIDIAN};
-        AXE.usualMaterials = new Material[]{BRONZE, IRON, STEEL, BONE};
-        HAMMER.usualMaterials = new Material[]{BRONZE, IRON, STEEL, BONE};
-        EASY.usualMaterials = new Material[]{BRONZE, IRON, STEEL, WOOD};
-        RANGED.usualMaterials = new Material[]{BRONZE, IRON, STEEL, BONE, WOOD};
+        SWORD.usualMaterials = new BagOfStuff<>(new Material[]{BRONZE, IRON, STEEL});
+        CURVED.usualMaterials = new BagOfStuff<>(new Material[]{IRON, STEEL});
+        DAGGER.usualMaterials = new BagOfStuff<>(new Material[]{BRONZE, IRON, STEEL, BONE, OBSIDIAN});
+        AXE.usualMaterials = new BagOfStuff<>(new Material[]{BRONZE, IRON, STEEL, BONE});
+        HAMMER.usualMaterials = new BagOfStuff<>(new Material[]{BRONZE, IRON, STEEL, BONE});
+        EASY.usualMaterials = new BagOfStuff<>(new Material[]{BRONZE, IRON, STEEL, WOOD});
+        RANGED.usualMaterials = new BagOfStuff<>(new Material[]{BRONZE, IRON, STEEL, BONE, WOOD});
 
     }
 
