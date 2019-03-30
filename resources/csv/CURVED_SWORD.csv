@@ -1,9 +1,0 @@
-name,itemType,type,hands,cost,rarity,region,bonus,description
-katana,"weapon
-",curved_sword,1,111,3,,special;0;0;;Proti této zbrani nelze uplatnit výhody nekovové zbroje.;,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
-bouruční katana,weapon,curved_sword,2,189,4,,special;0;0;;Proti této zbrani nelze uplatnit výhody nekovové zbroje.;,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
-obouruční falx,weapon,curved_sword,2,32,7,,bonus;1;0;body;při boji s protivníkem bránícím se zbraní nebo štítem.;,"Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Traduje se že tato zbraň dokáže rozetnout protivníkův štít vejpůl."
-falx,weapon,curved_sword,1,10,10,,bonus;1;0;body;při boji s protivníkem bránícím se zbraní nebo štítem.;,"Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Svým tvarem umožňuje obejít protivníkův kryt."
-krátká šavle,weapon,curved_sword,1,20,20,,,
-scimitar,weapon,curved_sword,1,39,40,,,Delší tenký zahnutý meč orientálního původu. Působí hlubší řezná zranění než obyčejné meče. Díky své zahnuté čepeli se neobyčejně snadno zařezává do masa.
-šavle,weapon,curved_sword,1,28,50,,,"Zahnutý meč působící hlubší řezná zranění, než obyčejné meče."

@@ -1,13 +1,14 @@
 package drd2.rig.text.csv;
 
+import drd2.rig.Material;
 import drd2.rig.generators.BagOfStuff;
-import drd2.rig.items.Item;
-import drd2.rig.items.ItemType;
+import drd2.rig.items.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+import static drd2.rig.items.ItemType.WEAPON;
 
 public class CSVParser {
     public static final String SEPARATOR = ",";
@@ -30,59 +31,36 @@ public class CSVParser {
      * @param csvFilePath path to the CSV parsed
      * @return array of items
      */
-    public static BagOfStuff<Item> parseItemsFromCSV(String csvFilePath) {
-        Set<Item> set = new HashSet<>();
+    public static BagOfStuff<WeaponBuilder> parseWeaponsFromCSV(String csvFilePath) {
+        Set<WeaponBuilder> set = new HashSet<>();
         BufferedReader br = null;
         String line = null;
         try {
             br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFilePath), StandardCharsets.UTF_8));
             line = br.readLine(); // load the headers of the table
 
-            byte iName = -1, iItemType = -1, iType = -1, iHands = -1, iCost = -1, iRarity = -1,
-                    iRegion = -1, iBonus = -1, iDescription = -1;
-
             String[] splitHeader = line.split(SEPARATOR, -1);
-            for (byte i = 0; i < splitHeader.length; i++) {
-                switch (splitHeader[i]) {
-                    case LABEL_NAME:
-                        iName = i;
-                        break;
-                    case LABEL_ITEM_TYPE:
-                        iItemType = i;
-                        break;
-                    case LABEL_TYPE:
-                        iType = i;
-                        break;
-                    case LABEL_HANDS:
-                        iHands = i;
-                        break;
-                    case LABEL_COST:
-                        iCost = i;
-                        break;
-                    case LABEL_RARITY:
-                        iRarity = i;
-                        break;
-                    case LABEL_REGION:
-                        iRegion = i;
-                        break;
-                    case LABEL_BONUS:
-                        iBonus = i;
-                        break;
-                    case LABEL_DESCRIPTION:
-                        iDescription = i;
-                        break;
-                }
+            byte iType = findStrInArr(LABEL_TYPE, splitHeader);
+
+            if (iType == -1) {
+                throw new RuntimeException("Error: CSVParser: No item type column defined in CSV[" + csvFilePath + "].");
             }
+
 
             // this will read lines one by one until end of file
             while ((line = br.readLine()) != null) {
                 String[] itemInformation = line.split(SEPARATOR, -1);
-                if (iType == -1) {
-                    throw new RuntimeException("Error: CSVParser: No item type defined in CSV[" + csvFilePath + "].");
-                }
-                switch(itemInformation[iType]) {
-                    case ItemType.WEAPON.text:
-                }
+                set.add(new ItemBuilder(
+                        getValByLabel(splitHeader, itemInformation, "name"),
+                        Integer.parseInt(getValByLabel(splitHeader, itemInformation, LABEL_COST)),
+                        new LinkedList<>(Arrays.asList(new ItemAbility[]{new ItemAbility(AbilityType.SPECIAL, (byte)0,0,null, getValByLabel(splitHeader, itemInformation, "bonus"),null)})),
+                        getValByLabel(splitHeader, itemInformation, LABEL_DESCRIPTION)
+                ))
+
+
+                WeaponType.valueOf(getValByLabel(splitHeader, itemInformation, "type")),
+                        Hands.array[Integer.parseInt(getValByLabel(splitHeader, itemInformation, "hands"))],
+                        Byte.parseByte(getValByLabel(splitHeader, itemInformation, "quality")),
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -96,5 +74,24 @@ public class CSVParser {
             }
         }
         return null;
+    }
+
+    /**
+     * return index of string in an array.
+     * If no such string is present, returns -1
+     * @param str String to be searched for
+     * @param haystack array of strings to be searched through
+     * @return index of string if found, -1 otherwise
+     */
+    private static byte findStrInArr(String str, String[] haystack) {
+        byte i = (byte)haystack.length;
+        do {
+            --i;
+        } while (i >= 0 && !haystack[i].equals(str));
+        return i;
+    }
+
+    private static String getValByLabel(String[] headers, String[] data, String label) {
+        return data[findStrInArr(label, headers)];
     }
 }
