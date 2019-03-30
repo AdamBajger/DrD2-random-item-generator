@@ -21,6 +21,7 @@ public class Main extends Application {
 
             BagOfStuff<WeaponBuilder> bowb = CSVParser.parseWeaponsFromCSV("/resources/csv/WEAPON_CURVED_SWORD.csv");
 
+            // TODO: Complete WeaponBuilder to generate weapons and test it
 
         }
 
