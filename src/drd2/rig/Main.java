@@ -19,7 +19,8 @@ public class Main extends Application {
 
         public static void main(String[] args) {
 
-            BagOfStuff<WeaponBuilder> bowb = CSVParser.parseWeaponsFromCSV("/resources/csv/WEAPON_CURVED_SWORD.csv");
+            BagOfStuff<WeaponBuilder> bowb = CSVParser.parseWeaponsFromCSV("resources/csv/WEAPON_CURVED_SWORD.csv");
+
 
             // TODO: Complete WeaponBuilder to generate weapons and test it
 

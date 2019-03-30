@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -64,8 +65,8 @@ public class CSVParser {
                                 new LinkedList<>(Collections.singletonList(new ItemAbility(AbilityType.SPECIAL, (byte)0,0,null, getValByLabel(splitHeader, itemInformation, LABEL_BONUS),null))),
                                 getValByLabel(splitHeader, itemInformation, LABEL_DESCRIPTION)
                         ).toWeaponBuilder(
-                                Hands.valueOf(getValByLabel(splitHeader, itemInformation, LABEL_HANDS)),
-                                WeaponType.valueOf(getValByLabel(splitHeader, itemInformation, LABEL_WEAPON_TYPE))
+                                Hands.array[Integer.parseInt(getValByLabel(splitHeader, itemInformation, LABEL_HANDS))],
+                                WeaponType.valueOf(getValByLabel(splitHeader, itemInformation, LABEL_WEAPON_TYPE).toUpperCase())
                         )
                 );
                 rarityList.add(Integer.parseInt(getValByLabel(splitHeader, itemInformation, LABEL_RARITY)));
@@ -84,12 +85,14 @@ public class CSVParser {
             }
         }
         int[] rarityArray = new int[rarityList.size()];
-        int iterator = 0;
-        for (Integer i : rarityList) {
-            rarityArray[iterator] = i;
-            ++iterator;
+        WeaponBuilder[] weaponBuilderArray = new WeaponBuilder[weaponBuilderList.size()];
+        Iterator<Integer> ri = rarityList.iterator();
+        Iterator<WeaponBuilder> wbi = weaponBuilderList.iterator();
+        for (int i = 0; i < rarityList.size(); i++) {
+            rarityArray[i] = ri.next();
+            weaponBuilderArray[i] = wbi.next();
         }
-        return new BagOfStuff<>((WeaponBuilder[])weaponBuilderList.toArray(), rarityArray);
+        return new BagOfStuff<>(weaponBuilderArray, rarityArray);
     }
 
     /**

@@ -1,8 +1,8 @@
 name,weaponType,hands,cost,rarity,region,bonus,description
-katana,curved_sword,1,111,3,,Proti této zbrani nelze uplatnit výhody nekovové zbroje.,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
-bouruční katana,curved_sword,2,189,4,,Proti této zbrani nelze uplatnit výhody nekovové zbroje.,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
-obouruční falx,curved_sword,2,32,7,,Bonus +1 při boji s protivníkem bránícím se zbraní nebo štítem.,"Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Traduje se že tato zbraň dokáže rozetnout protivníkův štít vejpůl."
-falx,curved_sword,1,10,10,,Bonus +1 při boji s protivníkem bránícím se zbraní nebo štítem.,"Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Svým tvarem umožňuje obejít protivníkův kryt."
-krátká šavle,curved_sword,1,20,20,,,
-scimitar,curved_sword,1,39,40,,,Delší tenký zahnutý meč orientálního původu. Působí hlubší řezná zranění než obyčejné meče. Díky své zahnuté čepeli se neobyčejně snadno zařezává do masa.
-šavle,curved_sword,1,28,50,,,"Zahnutý meč působící hlubší řezná zranění, než obyčejné meče."
+katana,curved,1,111,3,,Proti této zbrani nelze uplatnit výhody nekovové zbroje.,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
+bouruční katana,curved,2,189,4,,Proti této zbrani nelze uplatnit výhody nekovové zbroje.,Kvalitní exotická zbraň. Krájí koženou zbroj jako máslo.
+obouruční falx,curved,2,32,7,,Bonus +1 při boji s protivníkem bránícím se zbraní nebo štítem.,"Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Traduje se že tato zbraň dokáže rozetnout protivníkův štít vejpůl."
+falx,curved,1,10,10,,Bonus +1 při boji s protivníkem bránícím se zbraní nebo štítem.,"Lehce srpovitě zahnutá zbraň exotického původu, broušená na vnitřní straně. Svým tvarem umožňuje obejít protivníkův kryt."
+krátká šavle,curved,1,20,20,,,
+scimitar,curved,1,39,40,,,Delší tenký zahnutý meč orientálního původu. Působí hlubší řezná zranění než obyčejné meče. Díky své zahnuté čepeli se neobyčejně snadno zařezává do masa.
+šavle,curved,1,28,50,,,"Zahnutý meč působící hlubší řezná zranění, než obyčejné meče."
